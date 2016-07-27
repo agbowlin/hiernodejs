@@ -1,7 +1,7 @@
 {
-	"name": "hiernode.js",
+	"name": "hiernodejs",
 	"version": "0.10.0",
-	"homepage": "https://github.com/agbowlin/hiernode.js"
+	"homepage": "https://github.com/agbowlin/hiernodejs"
 	"description": "A hierarchical node (tree like) data structure library for JavaScript.",
 
 	"authors": [
@@ -17,7 +17,7 @@
 	"repository":
 	{
 		"type": "git",
-		"url": "git://github.com/agbowlin/hiernode.js.git"
+		"url": "git://github.com/agbowlin/hiernodejs.git"
 	},
 
 	"license": "MIT",
