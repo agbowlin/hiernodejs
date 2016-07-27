@@ -1,22 +1,23 @@
 {
-  "name": "hiernodejs",
-  "version": "0.10.0",
-  "homepage": "https://github.com/agbowlin/hiernodejs",
-  "description": "A hierarchical node (tree like) data structure library for JavaScript.",
-  "authors": [
-    {
-      "name": "Andre' G. Bowlin",
-      "email": "agbowlin@gmail.com",
-      "homepage": "http://liquicode.com"
-    }
-  ],
-  "main": "hiernode.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/agbowlin/hiernodejs.git"
-  },
-  "license": "MIT",
-  "keywords": [
+	"name": "hiernodejs",
+	"version": "0.1.11",
+	"homepage": "https://github.com/agbowlin/hiernodejs",
+	"description": "A hierarchical node (tree like) data structure library for JavaScript.",
+	"authors": [
+		{
+			"name": "Andre G. Bowlin",
+			"email": "agbowlin@gmail.com",
+			"homepage": "http://liquicode.com"
+		}
+	],
+	"main": "hiernode.js",
+	"repository":
+	{
+		"type": "git",
+		"url": "git://github.com/agbowlin/hiernodejs.git"
+	},
+	"license": "MIT",
+	"keywords": [
     "util",
     "functional",
     "server",
@@ -30,7 +31,7 @@
     "tree",
     "data"
   ],
-  "files": [
+	"files": [
     "package.json",
     "bower.json",
     "LICENSE",
@@ -38,14 +39,16 @@
     "hiernode.js",
     "hiernode.min.js"
   ],
-  "ignore": [
-    ".*",
-    "node_modules",
-    "build.sh",
-    "hiernode-test.html"
+	"ignore": [
+		".*",
+		"bower_components",
+		"node_modules",
+		"build",
+		"test"
   ],
-  "devDependencies": {
-    "bower": "^1.7.9",
-    "google-closure-compiler": "^20160713.1.0"
-  }
+	"devDependencies":
+	{
+		"bower": "^1.7.9",
+		"google-closure-compiler": "^20160713.1.0"
+	}
 }

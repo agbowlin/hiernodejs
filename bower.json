@@ -1,11 +1,12 @@
 {
 	"name": "hiernodejs",
+	"version": "0.1.11",
 	"homepage": "https://github.com/agbowlin/hiernodejs",
 	"description": "A hierarchical node (tree like) data structure library for JavaScript.",
 
 	"authors": [
 		{
-			"name": "Andre' G. Bowlin",
+			"name": "Andre G. Bowlin",
 			"email": "agbowlin@gmail.com",
 			"homepage": "http://liquicode.com"
 		}
@@ -43,10 +44,10 @@
 
 	"ignore": [
 		".*",
+		"bower_components",
 		"node_modules",
-		"build.sh",
-		"hiernode-test.html",
-		"package.json"
+		"build",
+		"test"
 	]
 
 }
