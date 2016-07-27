@@ -1,0 +1,52 @@
+{
+	"name": "hiernode.js",
+	"homepage": "https://github.com/agbowlin/hiernode.js"
+	"description": "A hierarchical node (tree like) data structure library for JavaScript.",
+
+	"authors": [
+		{
+			"name": "Andre' G. Bowlin",
+			"email": "agbowlin@gmail.com",
+			"homepage": "http://liquicode.com"
+		}
+	],
+
+	"main": "hiernode.js",
+	
+	"moduleType": [
+		"globals"
+	],
+	
+	"repository":
+	{
+		"type": "git",
+		"url": "git://github.com/agbowlin/hiernode.js.git"
+	},
+	
+	"license": "MIT",
+	
+	"keywords": [
+		"util",
+		"functional",
+		"server",
+		"client",
+		"browser",
+		"hiernode",
+		"hiernode.js",
+		"hiernodejs",
+		"hierarchy",
+		"hierarchical",
+		"node",
+		"tree",
+		"data"
+	],
+
+	"ignore": [
+		".*",
+		"node_modules",
+		"build.sh",
+		"hiernode-test.html",
+		"package.json"
+	]
+
+}

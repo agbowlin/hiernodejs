@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+		<meta charset="utf-8">
+		<title>HierNode Test</title>
+		
+		<style type="text/css">
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+				/*font-size: xx-large;*/
+				/*font-weight: bold;*/
+				background-color: #E3F0FB;
+				border-radius: 4px;
+				padding: 10px;
+			}
+			
+			pre {
+				border-radius: 4px;
+				border: thin solid black;
+				padding: 5px;
+				background-color: #F8F094;
+				font-family: "Lucida Console";
+				font-size: small;
+				/*font-weight: bold;*/
+				/*color: #663300;*/
+			}
+			
+			.pass:before {
+				content: 'PASS: ';
+				color: blue;
+				font-weight: bold;
+			}
+			
+			.fail:before {
+				content: 'FAIL: ';
+				color: red;
+				font-weight: bold;
+			}
+		</style>
+
+		<!--<script type="text/javascript" src="./hiernode.js"></script>-->
+		<script type="text/javascript" src="./hiernode.min.js"></script>
+
+	</head>
+
+	<body>
+
+		<h1>Test 00</h1>
+		<ul id="TestSuite00"></ul>
+		<hr>
+
+		<h1>Test 01</h1>
+		<pre id="Test01"></pre>
+		<ul id="TestSuite01"></ul>
+		<hr>
+
+		<h1>Test 02</h1>
+		<pre id="Test02"></pre>
+		<ul id="TestSuite02"></ul>
+		<hr>
+
+		<h1>Test 03</h1>
+		<pre id="Test03"></pre>
+		<ul id="TestSuite03"></ul>
+		<hr>
+
+		<script>
+			/* global HierNodeLib */
+			/* global HierNode */
+			/* global TextNode */
+
+			function Test(TestSuite, TestCase, Description)
+			{
+				var li = document.createElement('li');
+				li.className = TestCase ? 'pass' : 'fail';
+				li.appendChild(document.createTextNode(Description));
+				TestSuite.appendChild(li);
+			}
+
+			var node = null;
+			var test_suite = null;
+
+			//=====================================================================
+			//
+			//		Test Suite 00
+			//
+			//=====================================================================
+			
+			test_suite = document.getElementById('TestSuite00');
+
+			node = HierNode();
+			Test(test_suite, node, "Create empty HierNode.");
+
+			node = HierNode(
+			{
+				Key: "Test"
+			});
+			Test(test_suite, node, "Create HierNode with Key.");
+			Test(test_suite, node.Key === "Test", "Test HierNode.Key has the correct value.");
+
+			node = TextNode();
+			Test(test_suite, node, "Create an empty TextNode.");
+			Test(test_suite, node.Text === "", "TextNode has correct test value.");
+
+			node = TextNode("Test");
+			Test(test_suite, node, "Create a TextNode with a value.");
+			Test(test_suite, node.Text === "Test", "TextNode has correct test value.");
+
+
+			//=====================================================================
+			//
+			//		Test Suite 01
+			//
+			//=====================================================================
+			
+			function TestNodes1()
+			{
+				var root = HierNode(
+				{
+					Text: "A1"
+				});
+				root.AddChild(
+				{
+					Text: "B1"
+				});
+				node = root.FindChild(0);
+				node.AddChild(
+				{
+					Text: "C1"
+				});
+				node.FindChild(0).AddChild(
+				{
+					Text: "D1"
+				});
+				node.FindChild(0).AddChild(
+				{
+					Text: "D2"
+				});
+				node.FindChild(0).AddChild(
+				{
+					Text: "D3"
+				});
+				node.AddChild(
+				{
+					Text: "C2"
+				});
+				node.AddChild(
+				{
+					Text: "C3"
+				});
+				node = root.AddChild(
+				{
+					Text: "B2"
+				});
+				node.AddChild(
+				{
+					Text: "C4"
+				});
+				node.AddChild(
+				{
+					Text: "C5"
+				});
+				node.AddChild(
+				{
+					Text: "C6"
+				});
+				node = root.AddChild(
+				{
+					Text: "B3"
+				});
+				node.AddChild(
+				{
+					Text: "C7"
+				});
+				return root;
+			}
+
+
+			node = TestNodes1();
+			document.getElementById("Test01").textContent = node.TextGraph("Text", "|- ", "\n");
+			
+			test_suite = document.getElementById('TestSuite01');
+			Test(test_suite, node.ChildCount() === 3, "A1 has 3 children.");
+			Test(test_suite, node.DescendentCount() === 13, "A1 has 13 descendents.");
+			Test(test_suite, node.SearchDescendents("Text", "C2")[0].PrevNode().Text === "D3", "D3 = C2.Prev");
+			Test(test_suite, node.SearchDescendents("Text", "C2")[0].NextNode().Text === "C3", "C3 = C2.Next");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindFirst().Text === "A1", "A1 = C1.First");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindLast().Text === "C7", "C7 = C1.Last");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindRoot().Text === "A1", "A1 = C1.Root");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindParent().Text === "B1", "B1 = C1.Parent");
+			Test(test_suite, node.SearchDescendents("Text", "C2")[0].FindPrevSibling().Text === "C1", "C1 = C2.PrevSib");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindNextSibling().Text === "C2", "C2 = C1.NextSib");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindFirstSibling().Text === "C1", "C1 = C1.FirstSib");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindLastSibling().Text === "C3", "C3 = C1.LastSib");
+			Test(test_suite, node.FindFirstChild().Text === "B1", "B1 = A1.FirstChild");
+			Test(test_suite, node.FindLastChild().Text === "B3", "B3 = A1.LastChild");
+			Test(test_suite, node.FindFirstDescendent().Text === "B1", "B1 = A1.FirstDesc");
+			Test(test_suite, node.FindLastDescendent().Text === "C7", "C7 = A1.LastDesc");
+
+
+			//=====================================================================
+			//
+			//		Test Suite 02
+			//
+			//=====================================================================
+			
+			function TestNodes2()
+			{
+				var root = TextNode("A1");
+				root.AddChild(TextNode("B1"));
+				node = root.FindChild(0);
+				node.AddChild(TextNode("C1"));
+				node.FindChild(0).AddChild(TextNode("D1"));
+				node.FindChild(0).AddChild(TextNode("D2"));
+				node.FindChild(0).AddChild(TextNode("D3"));
+				node.AddChild(TextNode("C2"));
+				node.AddChild(TextNode("C3"));
+				node = root.AddChild(TextNode("B2"));
+				node.AddChild(TextNode("C4"));
+				node.AddChild(TextNode("C5"));
+				node.AddChild(TextNode("C6"));
+				node = root.AddChild(TextNode("B3"));
+				node.AddChild(TextNode("C7"));
+				return root;
+			}
+
+
+			node = TestNodes2();
+			document.getElementById("Test02").textContent = node.TextGraph("Text", "|- ", "\n");
+
+			test_suite = document.getElementById('TestSuite02');
+			Test(test_suite, node.ChildCount() === 3, "A1 has 3 children.");
+			Test(test_suite, node.DescendentCount() === 13, "A1 has 13 descendents.");
+			Test(test_suite, node.SearchDescendents("Text", "C2")[0].PrevNode().Text === "D3", "D3 = C2.Prev");
+			Test(test_suite, node.SearchDescendents("Text", "C2")[0].NextNode().Text === "C3", "C3 = C2.Next");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindFirst().Text === "A1", "A1 = C1.First");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindLast().Text === "C7", "C7 = C1.Last");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindRoot().Text === "A1", "A1 = C1.Root");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindParent().Text === "B1", "B1 = C1.Parent");
+			Test(test_suite, node.SearchDescendents("Text", "C2")[0].FindPrevSibling().Text === "C1", "C1 = C2.PrevSib");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindNextSibling().Text === "C2", "C2 = C1.NextSib");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindFirstSibling().Text === "C1", "C1 = C1.FirstSib");
+			Test(test_suite, node.SearchDescendents("Text", "C1")[0].FindLastSibling().Text === "C3", "C3 = C1.LastSib");
+			Test(test_suite, node.FindFirstChild().Text === "B1", "B1 = A1.FirstChild");
+			Test(test_suite, node.FindLastChild().Text === "B3", "B3 = A1.LastChild");
+			Test(test_suite, node.FindFirstDescendent().Text === "B1", "B1 = A1.FirstDesc");
+			Test(test_suite, node.FindLastDescendent().Text === "C7", "C7 = A1.LastDesc");
+
+
+			//=====================================================================
+			//
+			//		Test Suite 03
+			//
+			//=====================================================================
+			
+			function TestNodes3()
+			{
+				var root = TextNode("Root");
+				for (var parent_index = 1; parent_index <= 3; parent_index++)
+				{
+					var parent = root.AddChild(TextNode(parent_index));
+					for (var child_index = 1; child_index <= 3; child_index++)
+					{
+						var child = parent.AddChild(TextNode(parent_index + "." + child_index));
+						for (var grand_child_index = 1; grand_child_index <= 3; grand_child_index++)
+						{
+							child.AddChild(TextNode(parent_index + "." + child_index + "." + grand_child_index));
+						}
+					}
+				}
+				return root;
+			}
+
+			node = TestNodes3();
+			document.getElementById("Test03").textContent = node.TextGraph("Text", "|- ", "\n");
+
+			test_suite = document.getElementById('TestSuite03');
+			Test(test_suite, node.ChildCount() === 3, "Root has 3 children.");
+			Test(test_suite, node.DescendentCount() === 39, "Root has 39 descendents.");
+
+		</script>
+
+	</body>
+
+</html>
