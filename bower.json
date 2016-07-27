@@ -1,6 +1,6 @@
 {
 	"name": "hiernodejs",
-	"homepage": "https://github.com/agbowlin/hiernodejs"
+	"homepage": "https://github.com/agbowlin/hiernodejs",
 	"description": "A hierarchical node (tree like) data structure library for JavaScript.",
 
 	"authors": [
