@@ -94,7 +94,7 @@ or
 
 [current](https://github.com/agbowlin/hiernodejs/tree/master) : [now]
 
-[v0.1.11](https://github.com/agbowlin/hiernodejs/tree/v0.1.11) : [???]
+[v0.1.11](https://github.com/agbowlin/hiernodejs/tree/v0.1.11) : [2016-07-30]
 - Tightened up the HierNodeLib API.
 - Added documentation (jsdoc).
 
