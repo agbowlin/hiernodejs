@@ -39,8 +39,8 @@
 			}
 		</style>
 
-		<!--<script type="text/javascript" src="./hiernode.js"></script>-->
-		<script type="text/javascript" src="../hiernode.min.js"></script>
+		<script type="text/javascript" src="../hiernode.js"></script>
+		<!--<script type="text/javascript" src="../hiernode.min.js"></script>-->
 
 	</head>
 
@@ -124,20 +124,20 @@
 				{
 					Text: "B1"
 				});
-				node = root.FindChild(0);
+				node = root.Child(0);
 				node.AddChild(
 				{
 					Text: "C1"
 				});
-				node.FindChild(0).AddChild(
+				node.Child(0).AddChild(
 				{
 					Text: "D1"
 				});
-				node.FindChild(0).AddChild(
+				node.Child(0).AddChild(
 				{
 					Text: "D2"
 				});
-				node.FindChild(0).AddChild(
+				node.Child(0).AddChild(
 				{
 					Text: "D3"
 				});
@@ -209,11 +209,11 @@
 			{
 				var root = TextNode("A1");
 				root.AddChild(TextNode("B1"));
-				node = root.FindChild(0);
+				node = root.Child(0);
 				node.AddChild(TextNode("C1"));
-				node.FindChild(0).AddChild(TextNode("D1"));
-				node.FindChild(0).AddChild(TextNode("D2"));
-				node.FindChild(0).AddChild(TextNode("D3"));
+				node.Child(0).AddChild(TextNode("D1"));
+				node.Child(0).AddChild(TextNode("D2"));
+				node.Child(0).AddChild(TextNode("D3"));
 				node.AddChild(TextNode("C2"));
 				node.AddChild(TextNode("C3"));
 				node = root.AddChild(TextNode("B2"));
