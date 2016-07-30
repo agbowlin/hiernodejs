@@ -4,7 +4,8 @@
 
 ## Publish a New Release
 
-- Make a new release in GitHu via https://github.com/agbowlin/hiernodejs/releases.
+- Make a new release in GitHu via
+	[https://github.com/agbowlin/hiernodejs/releases.](https://github.com/agbowlin/hiernodejs/releases).
 	This updates the bower registry.
 - Publish to Npm with `npm publish`.
 - Update `hiernode.js`, `bower.json`, and `package.json` with the next version number.

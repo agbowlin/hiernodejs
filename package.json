@@ -43,11 +43,13 @@
     "bower_components",
     "node_modules",
     "build",
+    "out",
     "test"
   ],
   "devDependencies": {
     "bower": "^1.7.9",
-    "google-closure-compiler": "^20160713.1.0",
-    "jsdoc": "^3.4.0"
+    "jsdoc": "^3.4.0",
+    "docdash": "^0.4.0",
+    "google-closure-compiler": "^20160713.1.0"
   }
 }

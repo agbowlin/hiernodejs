@@ -2,32 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>Home - Documentation</title>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
 </head>
-
 <body>
 
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HierNodeLib.html">HierNodeLib</a><ul class='methods'><li data-type='method'><a href="module-HierNodeLib.html#~AddChild">AddChild</a></li><li data-type='method'><a href="module-HierNodeLib.html#~FindRelative">FindRelative</a></li><li data-type='method'><a href="module-HierNodeLib.html#~Indent">Indent</a></li><li data-type='method'><a href="module-HierNodeLib.html#~InitNode">InitNode</a></li><li data-type='method'><a href="module-HierNodeLib.html#~NextNode">NextNode</a></li><li data-type='method'><a href="module-HierNodeLib.html#~PrevNode">PrevNode</a></li><li data-type='method'><a href="module-HierNodeLib.html#~RemoveChild">RemoveChild</a></li><li data-type='method'><a href="module-HierNodeLib.html#~RemoveChildren">RemoveChildren</a></li><li data-type='method'><a href="module-HierNodeLib.html#~TextGraph">TextGraph</a></li><li data-type='method'><a href="module-HierNodeLib.html#~VisitNodes">VisitNodes</a></li></ul></li></ul>
+</nav>
+
 <div id="main">
-
-    <h1 class="page-title">Home</h1>
+    
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
 
 
 
@@ -40,13 +45,12 @@
     
 
 
-
-
-    <section>
+    <section class="readme">
         <article><pre class="prettyprint source"><code>        ___  __        __   __   ___       __  
 |__| | |__  |__) |\ | /  \ |  \ |__     | /__` 
-|  | | |___ |  \ | \| \__/ |__/ |___ \__/ .__/ </code></pre><hr>
-<pre class="prettyprint source"><code>D3 = C2.Prev        A1
+|  | | |___ |  \ | \| \__/ |__/ |___ \__/ .__/ 
+
+D3 = C2.Prev        A1
 C3 = C2.Next         +- B1
 A1 = C1.First        |   +- C1
 C7 = C1.Last         |   |   +- D1
@@ -60,6 +64,46 @@ B1 = A1.FirstChild   |   +- C5
 B3 = A1.LastChild    |   +- C6
 B1 = A1.FirstDesc    +- B3
 C7 = A1.LastDesc         +- C7</code></pre><hr>
+<h2>Installation</h2><p><strong>Bower</strong></p>
+<pre class="prettyprint source"><code>bower install hiernodejs</code></pre><p><strong>NPM</strong></p>
+<pre class="prettyprint source"><code>npm install hiernodejs</code></pre><hr>
+<h2>Usage</h2><p><strong>HTML Page</strong></p>
+<pre class="prettyprint source"><code>&lt;script type=&quot;text/javascript&quot; src=&quot;bower_component/hiernodejs/hiernode.js&quot;>&lt;/script></code></pre><p>or</p>
+<pre class="prettyprint source"><code>&lt;script type=&quot;text/javascript&quot; src=&quot;bower_component/hiernodejs/hiernode.min.js&quot;>&lt;/script></code></pre><p><strong>Using with Simple Objects</strong></p>
+<pre class="prettyprint source"><code>// Create a (root) node.
+var node = HierNode();
+node.Name = &quot;People&quot;;
+
+// Create a child node.
+var child = node.AddChild();
+child.Name = &quot;Alice&quot;;
+
+// Test the relationships.
+if( child.PrevNode() === node ) { Alert(&quot;Yes&quot;); }
+if( child.FindRoot() === node ) { Alert(&quot;Yes&quot;); }
+if( node.FindFirstChild() === child ) { Alert(&quot;Yes&quot;); }</code></pre><p><strong>Using with Defined Objects</strong></p>
+<pre class="prettyprint source"><code>// Create a root node for &quot;People&quot;.
+var node = HierNode( { &quot;Name&quot;: &quot;People&quot;, &quot;IsGroup&quot;: true } );
+
+// Create some People objects.
+node.AddChild( { &quot;Name&quot;: &quot;Alice&quot;, &quot;Age&quot;: 22, &quot;Dept&quot;: &quot;IT&quot; } );
+node.AddChild( { &quot;Name&quot;: &quot;Bob&quot;, &quot;Age&quot;: 24, &quot;Dept&quot;: &quot;IT&quot; } );
+node.AddChild( { &quot;Name&quot;: &quot;Eve&quot;, &quot;Age&quot;: 29, &quot;Dept&quot;: &quot;HR&quot; } );
+
+// Search all the People objects.
+var nodes = node.SearchDescendents( &quot;Dept&quot;, &quot;IT&quot; );
+// nodes is an array containing the &quot;Alice&quot; and &quot;Bob&quot; objects.</code></pre><p><strong>Using with Predefined Objects</strong></p>
+<pre class="prettyprint source"><code>// Create a root node for &quot;People&quot;.
+var node = HierNode( new MyGroup( &quot;People&quot; ) );
+
+// Create some People objects.
+node.AddChild( new MyPerson( &quot;Alice&quot;, 22, &quot;IT&quot; ) );
+node.AddChild( new MyPerson( &quot;Bob&quot;, 24, &quot;IT&quot; ) );
+node.AddChild( new MyPerson( &quot;Eve&quot;, 29, &quot;HR&quot; ) );
+
+// Search all the People objects.
+var nodes = node.SearchDescendents( &quot;Dept&quot;, &quot;IT&quot; );
+// nodes is an array containing the &quot;Alice&quot; and &quot;Bob&quot; objects.</code></pre><hr>
 <h2>History</h2><p><a href="https://github.com/agbowlin/hiernodejs/tree/master">current</a> : [now]</p>
 <p><a href="https://github.com/agbowlin/hiernodejs/tree/v0.1.11">v0.1.11</a> : [???]</p>
 <ul>
@@ -142,17 +186,13 @@ THE SOFTWARE.</code></pre><hr>
 
 </div>
 
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HierNodeLib.html">HierNodeLib</a></li></ul>
-</nav>
-
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jul 30 2016 02:06:43 GMT+0000 (UTC)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jul 30 2016 07:12:35 GMT+0000 (UTC) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
 </body>
 </html>

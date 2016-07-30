@@ -3,9 +3,6 @@
 	        ___  __        __   __   ___       __  
 	|__| | |__  |__) |\ | /  \ |  \ |__     | /__` 
 	|  | | |___ |  \ | \| \__/ |__/ |___ \__/ .__/ 
-	                                             
-
----------------------------------------------------------------------
 
 	D3 = C2.Prev        A1
 	C3 = C2.Next         +- B1
@@ -21,6 +18,75 @@
 	B3 = A1.LastChild    |   +- C6
 	B1 = A1.FirstDesc    +- B3
 	C7 = A1.LastDesc         +- C7
+
+---------------------------------------------------------------------
+
+## Installation
+
+**Bower**
+
+	bower install hiernodejs
+
+**NPM**
+
+	npm install hiernodejs
+
+---------------------------------------------------------------------
+
+## Usage
+
+**HTML Page**
+
+	<script type="text/javascript" src="bower_component/hiernodejs/hiernode.js"></script>
+
+or
+
+	<script type="text/javascript" src="bower_component/hiernodejs/hiernode.min.js"></script>
+
+
+**Using with Simple Objects**
+
+	// Create a (root) node.
+	var node = HierNode();
+	node.Name = "People";
+	
+	// Create a child node.
+	var child = node.AddChild();
+	child.Name = "Alice";
+	
+	// Test the relationships.
+	if( child.PrevNode() === node ) { Alert("Yes"); }
+	if( child.FindRoot() === node ) { Alert("Yes"); }
+	if( node.FindFirstChild() === child ) { Alert("Yes"); }
+
+**Using with Defined Objects**
+
+	// Create a root node for "People".
+	var node = HierNode( { "Name": "People", "IsGroup": true } );
+	
+	// Create some People objects.
+	node.AddChild( { "Name": "Alice", "Age": 22, "Dept": "IT" } );
+	node.AddChild( { "Name": "Bob", "Age": 24, "Dept": "IT" } );
+	node.AddChild( { "Name": "Eve", "Age": 29, "Dept": "HR" } );
+
+	// Search all the People objects.
+	var nodes = node.SearchDescendents( "Dept", "IT" );
+	// nodes is an array containing the "Alice" and "Bob" objects.
+
+**Using with Predefined Objects**
+
+	// Create a root node for "People".
+	var node = HierNode( new MyGroup( "People" ) );
+	
+	// Create some People objects.
+	node.AddChild( new MyPerson( "Alice", 22, "IT" ) );
+	node.AddChild( new MyPerson( "Bob", 24, "IT" ) );
+	node.AddChild( new MyPerson( "Eve", 29, "HR" ) );
+
+	// Search all the People objects.
+	var nodes = node.SearchDescendents( "Dept", "IT" );
+	// nodes is an array containing the "Alice" and "Bob" objects.
+
 
 ---------------------------------------------------------------------
 

@@ -30,15 +30,19 @@ var HierNodeLib = (function()
 	//==========================================
 	/**
 	 * @function InitNode
-	 * Initializes an object with HierNode specific properties.
-	 * @param {object} ThisNode - The object to be node-ified.
-	 * @returns {!object} The node-ified node (i.e. ThisNode).
+	 * 
+	 * @summary Initializes an object with HierNode specific properties.
+	 * 
+	 * @param {Object} ThisNode - The object to be node-ified.
+	 * 
+	 * @returns {!Object} The node-ified node (i.e. ThisNode).
 	 */
-	function InitNode(ThisNode, ThisPrevNode = null, ThisNextNode = null, ThisIndent = 0)
+	function InitNode(ThisNode)
+	// function InitNode(ThisNode, ThisPrevNode = null, ThisNextNode = null, ThisIndent = 0)
 	{
-		ThisNode._hnPrevNode = ThisPrevNode;
-		ThisNode._hnNextNode = ThisNextNode;
-		ThisNode._hnIndent = ThisIndent;
+		ThisNode._hnPrevNode = null;
+		ThisNode._hnNextNode = null;
+		ThisNode._hnIndent = 0;
 		return ThisNode;
 	}
 
@@ -46,8 +50,10 @@ var HierNodeLib = (function()
 	//==========================================
 	/**
 	 * @function PrevNode
-	 * @param {object} ThisNode - The node to query.
-	 * @returns {?object} The previous node of the given node.
+	 * 
+	 * @param {Object} ThisNode - The node to query.
+	 * 
+	 * @returns {?Object} The previous node of the given node.
 	 */
 	function PrevNode(ThisNode)
 	{
@@ -58,8 +64,10 @@ var HierNodeLib = (function()
 	//==========================================
 	/**
 	 * @function NextNode
-	 * @param {object} ThisNode - The node to query.
-	 * @returns {?object} The next node of the given node.
+	 * 
+	 * @param {Object} ThisNode - The node to query.
+	 * 
+	 * @returns {?Object} The next node of the given node.
 	 */
 	function NextNode(ThisNode)
 	{
@@ -70,8 +78,10 @@ var HierNodeLib = (function()
 	//==========================================
 	/**
 	 * @function Indent
-	 * @param {object} ThisNode - The node to query.
-	 * @returns {Integer} The indent level of the given node.
+	 * 
+	 * @param {Object} ThisNode - The node to query.
+	 * 
+	 * @returns {Number} The indent level of the given node.
 	 */
 	function Indent(ThisNode)
 	{
@@ -106,21 +116,9 @@ var HierNodeLib = (function()
 
 
 	//==========================================
-	/** @class RelationshipTypes
-	 * Constants used to direct the processing of the FindRelative function.
-	 */
 	var RelationshipTypes = {
-		
-		/** @constant RelationshipTypes\PrevNode
-		 * Finds the immediately previous node.
-		 */
 		PrevNode: 'PrevNode',
-		
-		/** @constant RelationshipTypes\NextNode
-		 * Finds the immediately next node.
-		 */
 		NextNode: 'NextNode',
-		
 		FirstNode: 'FirstNode',
 		LastNode: 'LastNode',
 		RootNode: 'RootNode',
@@ -138,11 +136,33 @@ var HierNodeLib = (function()
 
 	//==========================================
 	/** @function FindRelative
+	 * 
+	 * @summary
 	 * Finds a single other node within the hierarchy of a specific relation
 	 * to the given node.
-	 * @param {object} ThisNode - The node to query.
-	 * @param {RelationshipTypes} RelationshipType - The node to query.
-	 * @returns {?object} The found node, or null if non-existent.
+	 * 
+	 * @param {Object} ThisNode - The node to query.
+	 * @param {string} RelationshipType - The type of node to look for.
+	 * 
+	 * @returns {?Object} The node found by the RelationshipType, or null if not found.
+	 * 
+	 * @description
+	 * The RelationshipType parameter must be one of:
+	 * 
+	 *	PrevNode : Finds the immediately previous node.
+	 *	NextNode : Finds the immediately next node.
+	 *	FirstNode : Finds the very first node. This will also always be the root node.
+	 *	LastNode : Finds the very last node.
+	 *	RootNode : Finds the root node.
+	 *	ParentNode : Finds the parent node.
+	 *	PrevSibNode : Finds the previous sibling node.
+	 *	NextSibNode : Finds the next sibling node.
+	 *	FirstSibNode : Finds the first sibling node.
+	 *	LastSibNode : Finds the last sibling node.
+	 *	FirstChildNode : Finds the first child node.
+	 *	LastChildNode : Finds the last child node.
+	 *	FirstDescNode : Finds the first descendent node.
+	 *	LastDescNode : Finds the last descendent node.
 	 */
 	//==========================================
 	
@@ -354,7 +374,6 @@ var HierNodeLib = (function()
 
 
 	//==========================================
-	// Enumeration for Node Visitation Types
 	var VisitationTypes = {
 		AllNodes: 'AllNodes',
 		PrevNodes: 'PrevNodes',
@@ -368,6 +387,31 @@ var HierNodeLib = (function()
 	};
 
 
+	//==========================================
+	/** @function VisitNodes
+	 * 
+	 * @summary
+	 * Visits every one of a class of nodes defined by VisitationType.
+	 * 
+	 * @param {Object} ThisNode - The node to query.
+	 * @param {!Object} NodeVisitor - The operation to perform on each node visited.
+	 * @param {string} VisitationType - Identifies which nodes to visit.
+	 * 
+	 * @returns {!Object} The given NodeVisitor parameter.
+	 * 
+	 * @description
+	 * The VisitationType parameter must be one of:
+	 * 
+	 *	AllNodes : Visit all node in the hierarchy (depth-first).
+	 *	PrevNodes : Visits all the nodes previous to this one (backwards).
+	 *	NextNodes : Visits all the nodes after this one (forewards).
+	 *	ParentNodes : Visits all the parents of this node (upwards).
+	 *	SiblingNodes : Visits all the siblings of this node (sideways).
+	 *	PrevSibNodes : Visits all the siblings previous to this one.
+	 *	NextSibNodes : Visits all the siblings after this one.
+	 *	ChildNodes : Visits all the child nodes of this one. (downwards)
+	 *	DecendentNodes : Visits all the descendent nodes of this one. (downwards)
+	 */
 	//==========================================
 	function VisitNodes(ThisNode, NodeVisitor, VisitationType)
 	{
@@ -460,7 +504,11 @@ var HierNodeLib = (function()
 
 
 	//==========================================
-	/** @constructor */
+	/**
+	 * @class NullVisitor
+	 * @constructor
+	 * @summary A visitor which performs no action.
+	*/
 	function NullVisitor()
 	{
 		this.Visit = function(Node)
@@ -471,7 +519,11 @@ var HierNodeLib = (function()
 
 
 	//==========================================
-	/** @constructor */
+	/**
+	 * @class CountingVisitor
+	 * @constructor
+	 * @summary A visitor which counts nodes.
+	*/
 	function CountingVisitor()
 	{
 		this.Count = 0;
@@ -484,7 +536,11 @@ var HierNodeLib = (function()
 
 
 	//==========================================
-	/** @constructor */
+	/**
+	 * @class CollectingVisitor
+	 * @constructor
+	 * @summary A visitor which collects nodes into an array.
+	*/
 	function CollectingVisitor()
 	{
 		this.Nodes = [];
@@ -497,7 +553,11 @@ var HierNodeLib = (function()
 
 
 	//==========================================
-	/** @constructor */
+	/**
+	 * @class IndexSelectorVisitor
+	 * @constructor
+	 * @summary A visitor which selects the Index'th node visited.
+	*/
 	function IndexSelectorVisitor(Index)
 	{
 		this.Index = Index;
@@ -517,7 +577,11 @@ var HierNodeLib = (function()
 
 
 	//==========================================
-	/** @constructor */
+	/**
+	 * @class PropertySearchVisitor
+	 * @constructor
+	 * @summary A visitor which collects nodes where PropertyName = PropertyValue.
+	*/
 	function PropertySearchVisitor(PropertyName, PropertyValue)
 	{
 		this.PropertyName = PropertyName;
@@ -535,7 +599,11 @@ var HierNodeLib = (function()
 
 
 	//==========================================
-	/** @constructor */
+	/**
+	 * @class PropertySearchFirstVisitor
+	 * @constructor
+	 * @summary A visitor which selects the first node where PropertyName = PropertyValue.
+	*/
 	function PropertySearchFirstVisitor(PropertyName, PropertyValue)
 	{
 		this.PropertyName = PropertyName;
@@ -564,6 +632,18 @@ var HierNodeLib = (function()
 
 
 	//==========================================
+	/**
+	 * @function Link
+	 * @private
+	 * 
+	 * @summary Links a node within a doubly-linked list.
+	 * 
+	 * @param {Object} ThisNode - The node to link.
+	 * @param {Object} PrevNode - The previous node to link to.
+	 * @param {Object} NextNode - The next node to link to.
+	 * 
+	 * @returns {!Object} The given ThisNode parameter.
+	 */
 	function Link(ThisNode, PrevNode, NextNode)
 	{
 		if (ThisNode._hnPrevNode || ThisNode._hnNextNode)
@@ -585,6 +665,18 @@ var HierNodeLib = (function()
 
 
 	//==========================================
+	/**
+	 * @function Unlink
+	 * @private
+	 * 
+	 * @summary
+	 * Unlinks a node from a doubly-linked list and relinks its Previous and
+	 * Next nodes if they exist.
+	 * 
+	 * @param {Object} ThisNode - The node to unlink.
+	 * 
+	 * @returns {!Object} The given ThisNode parameter.
+	 */
 	function Unlink(ThisNode)
 	{
 		var prev_node = ThisNode._hnPrevNode;
@@ -604,7 +696,18 @@ var HierNodeLib = (function()
 
 
 	//==========================================
-	function AddChild(ThisNode, ChildNode = {}, ChildIndex = -1)
+	/**
+	 * @function AddChild
+	 * 
+	 * @summary Adds a new item as a child of ThisNode.
+	 * 
+	 * @param {Object} ThisNode - The node to add the child to (i.e. the Parent).
+	 * @param {Object=} [ChildNode = Object] - The child object to add.
+	 * @param {number=} [ChildIndex = -1] - The index at which to add the child.
+	 * 
+	 * @returns {!Object} The newly added child node.
+	 */
+	function AddChild(ThisNode, ChildNode = new Object(), ChildIndex = -1)
 	{
 		ChildNode = HierNode(ChildNode);
 
@@ -631,6 +734,7 @@ var HierNodeLib = (function()
 				ChildNode.Link(prev_node, next_node);
 				return ChildNode;
 			}
+			// Update the nodes we are looking for.
 			prev_node = next_node;
 			next_node = next_node._hnNextNode;
 		}
@@ -644,6 +748,16 @@ var HierNodeLib = (function()
 
 
 	//==========================================
+	/**
+	 * @function RemoveChild
+	 * 
+	 * @summary Adds a new item as a child of ThisNode.
+	 * 
+	 * @param {Object} ThisNode - The node to remove the children from (i.e. the Parent).
+	 * @param {number} ChildIndex - The index of the child to remove.
+	 * 
+	 * @returns {?Object} An array of the removed children.
+	 */
 	function RemoveChild(ThisNode, ChildIndex)
 	{
 		var child = HierNodeLib.VisitNodes(
@@ -660,7 +774,16 @@ var HierNodeLib = (function()
 
 
 	//==========================================
-	function ClearChildren(ThisNode)
+	/**
+	 * @function RemoveChildren
+	 * 
+	 * @summary Removes all children of ThisNode.
+	 * 
+	 * @param {Object} ThisNode - The node to remove the child from (i.e. the Parent).
+	 * 
+	 * @returns {!Object} The newly added child node, or null if ont found.
+	 */
+	function RemoveChildren(ThisNode)
 	{
 		var children = [];
 		var child = RemoveChild(ThisNode, 0);
@@ -684,6 +807,19 @@ var HierNodeLib = (function()
 
 
 	//==========================================
+	/**
+	 * @function TextGraph
+	 * 
+	 * @summary Renders a graph of the hierarchy using text characters.
+	 * 
+	 * @param {Object} RootNode - The node to graph. This node will appear in the graph.
+	 * @param {string} TextProperty - The property to use for the node in the graph
+	 *									(e.g. it's name or other text value).
+	 * @param {string=} [IndentText = '\t'] - The characters to use to indent each node.
+	 * @param {string=} [EolText = '\n'] - The characters to use after each node.
+	 * 
+	 * @returns {string} The text graph as a string.
+	 */
 	function TextGraph(RootNode, TextProperty, IndentText = '\t', EolText = '\n')
 	{
 		var text_graph = RootNode[TextProperty];
@@ -749,7 +885,7 @@ var HierNodeLib = (function()
 	Lib.Unlink = Unlink;
 	Lib.AddChild = AddChild;
 	Lib.RemoveChild = RemoveChild;
-	Lib.ClearChildren = ClearChildren;
+	Lib.RemoveChildren = RemoveChildren;
 
 	// Miscellaneous
 	Lib.TextGraph = TextGraph;
@@ -941,6 +1077,11 @@ function HierNode(ThisNode = {})
 		return HierNodeLib.VisitNodes(this, new HierNodeLib.PropertySearchVisitor(PropertyName, PropertyValue), HierNodeLib.VisitationTypes.ChildNodes).Nodes;
 	};
 
+	ThisNode.SearchFirstChild = function(PropertyName, PropertyValue)
+	{
+		return HierNodeLib.VisitNodes(this, new HierNodeLib.PropertySearchFirstVisitor(PropertyName, PropertyValue), HierNodeLib.VisitationTypes.ChildNodes).Node;
+	};
+
 	ThisNode.DescendentCount = function()
 	{
 		return HierNodeLib.VisitNodes(this, new HierNodeLib.CountingVisitor(), HierNodeLib.VisitationTypes.DecendentNodes).Count;
@@ -954,6 +1095,11 @@ function HierNode(ThisNode = {})
 	ThisNode.SearchDescendents = function(PropertyName, PropertyValue)
 	{
 		return HierNodeLib.VisitNodes(this, new HierNodeLib.PropertySearchVisitor(PropertyName, PropertyValue), HierNodeLib.VisitationTypes.DecendentNodes).Nodes;
+	};
+
+	ThisNode.SearchFirstDescendent = function(PropertyName, PropertyValue)
+	{
+		return HierNodeLib.VisitNodes(this, new HierNodeLib.PropertySearchFirstVisitor(PropertyName, PropertyValue), HierNodeLib.VisitationTypes.DecendentNodes).Node;
 	};
 
 	//------------------------------------------
@@ -980,9 +1126,9 @@ function HierNode(ThisNode = {})
 		return HierNodeLib.RemoveChild(this, ChildIndex);
 	};
 
-	ThisNode.ClearChildren = function()
+	ThisNode.RemoveChildren = function()
 	{
-		return HierNodeLib.ClearChildren(this);
+		return HierNodeLib.RemoveChildren(this);
 	};
 
 	//------------------------------------------

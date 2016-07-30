@@ -79,6 +79,7 @@
 			}
 
 			var node = null;
+			var child = null;
 			var test_suite = null;
 
 			//=====================================================================
@@ -278,7 +279,17 @@
 			test_suite = document.getElementById('TestSuite03');
 			Test(test_suite, node.ChildCount() === 3, "Root has 3 children.");
 			Test(test_suite, node.DescendentCount() === 39, "Root has 39 descendents.");
+			
+			node = node.SearchFirstDescendent("Text", "2.3");
+			Test(test_suite, node.Text == "2.3", "Found descendent node 2.3.");
+			
+			node.RemoveChildren();
+			Test(test_suite, node.ChildCount() == 0, "Removed children from 2.3.");
 
+			node = node.FindRoot();
+			Test(test_suite, node.Text == "Root", "Found descendent Root node.");
+			Test(test_suite, node.DescendentCount() === 36, "Root has 36 descendents.");
+			
 		</script>
 
 	</body>

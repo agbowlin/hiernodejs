@@ -1,24 +1,22 @@
-#!/usr/bin/bash
+#!/bin/bash
 echo --- START OF BUILD ---
 
 cd ~/workspace
 
 echo ==========================================
 
-echo Documenting [hiernode.js] ...
+echo === Documenting [hiernode.js]
 
-	jsdoc \
-		hiernode.js				\
-		--readme README.md		\
-		--destination docs		\
-		--verbose				\
+	jsdoc hiernode.js --configure build/jsdoc.json
 
-echo Wrote to [docs/] ...
-echo ... Documentation completed.
+echo === Wrote to [docs/]
+echo === Documentation completed.
 
 echo ==========================================
 
-echo Compiling [hiernode.js] ...
+echo === Compiling [hiernode.js]
+ls -l hiernode.js
+echo ...
 
 	java -jar node_modules/google-closure-compiler/compiler.jar \
 		--compilation_level SIMPLE			\
@@ -26,8 +24,9 @@ echo Compiling [hiernode.js] ...
 		--js hiernode.js					\
 		--js_output_file hiernode.min.js	\
 
-echo Wrote to [hiernode.min.js] ...
-echo ... Compilation completed.
+echo ...
+ls -l hiernode.min.js
+echo === Compilation completed
 
 echo ==========================================
 
