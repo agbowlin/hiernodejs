@@ -96,7 +96,7 @@ or
 
 [current](https://github.com/agbowlin/hiernodejs/tree/master) : [now]
 
-[v0.1.12](https://github.com/agbowlin/hiernodejs/tree/v0.1.12) : [presently]
+[v0.1.12](https://github.com/agbowlin/hiernodejs/tree/v0.1.12) : [2016-07-31]
 - Added functions:
 	- TextPath(ThisNode, TextProperty, IncludeRoot = false, Delimiter = '/')
 	- FindPath(RootNode, TextPath, TextProperty, IncludeRoot = false, Delimiter = '/')
