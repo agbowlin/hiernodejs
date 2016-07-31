@@ -98,10 +98,9 @@ or
 
 [v0.1.12](https://github.com/agbowlin/hiernodejs/tree/v0.1.12) : [2016-07-31]
 - Added functions:
-	- TextPath(ThisNode, TextProperty, IncludeRoot = false, Delimiter = '/')
+	- TextPath(ThisNode, TextProperty, IncludeRoot = true, Delimiter = '/')
 	- FindPath(RootNode, TextPath, TextProperty, IncludeRoot = false, Delimiter = '/')
-	- NodesToArray(ThisNode, IncludeRoot = false)
-	- NodesFromArray(NodeArray, IncludeRoot = false)
+	- AddChildren(NodeArray)
 - Breaking changes everywhere.
 	
 [v0.1.11](https://github.com/agbowlin/hiernodejs/tree/v0.1.11) : [2016-07-30]
