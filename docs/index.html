@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HierNodeLib.html">HierNodeLib</a><ul class='methods'><li data-type='method'><a href="module-HierNodeLib.html#~AddChild">AddChild</a></li><li data-type='method'><a href="module-HierNodeLib.html#~FindRelative">FindRelative</a></li><li data-type='method'><a href="module-HierNodeLib.html#~Indent">Indent</a></li><li data-type='method'><a href="module-HierNodeLib.html#~InitNode">InitNode</a></li><li data-type='method'><a href="module-HierNodeLib.html#~NextNode">NextNode</a></li><li data-type='method'><a href="module-HierNodeLib.html#~PrevNode">PrevNode</a></li><li data-type='method'><a href="module-HierNodeLib.html#~RemoveChild">RemoveChild</a></li><li data-type='method'><a href="module-HierNodeLib.html#~RemoveChildren">RemoveChildren</a></li><li data-type='method'><a href="module-HierNodeLib.html#~TextGraph">TextGraph</a></li><li data-type='method'><a href="module-HierNodeLib.html#~VisitNodes">VisitNodes</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HierNodeLib.CollectingVisitor.html">CollectingVisitor</a></li><li><a href="HierNodeLib.CountingVisitor.html">CountingVisitor</a></li><li><a href="HierNodeLib.IndexSelectorVisitor.html">IndexSelectorVisitor</a></li><li><a href="HierNodeLib.NullVisitor.html">NullVisitor</a></li><li><a href="HierNodeLib.PropertySearchFirstVisitor.html">PropertySearchFirstVisitor</a></li><li><a href="HierNodeLib.PropertySearchVisitor.html">PropertySearchVisitor</a></li></ul><h3>Namespaces</h3><ul><li><a href="HierNodeLib.html">HierNodeLib</a></li></ul><h3>Interfaces</h3><ul><li><a href="HierNodeLib.HierNode.html">HierNode</a><ul class='methods'><li data-type='method'><a href="HierNodeLib.HierNode.html#.AddChild">AddChild</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.AddChildren">AddChildren</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.CloneNode">CloneNode</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.CloneObject">CloneObject</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindFirst">FindFirst</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindFirstChild">FindFirstChild</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindFirstDescendent">FindFirstDescendent</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindFirstSibling">FindFirstSibling</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindLast">FindLast</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindLastChild">FindLastChild</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindLastDescendent">FindLastDescendent</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindLastDescendent">FindLastDescendent</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindLastDescendent">FindLastDescendent</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindLastDescendent">FindLastDescendent</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindLastSibling">FindLastSibling</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindNextSibling">FindNextSibling</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindParent">FindParent</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindPath">FindPath</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindPrevSibling">FindPrevSibling</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindRelative">FindRelative</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.FindRoot">FindRoot</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.Indent">Indent</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.PrevNode">PrevNode</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.RemoveChild">RemoveChild</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.RemoveChildren">RemoveChildren</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.TextGraph">TextGraph</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.TextPath">TextPath</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.VisitChildren">VisitChildren</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.VisitDescendents">VisitDescendents</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.VisitNextSiblings">VisitNextSiblings</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.VisitNodes">VisitNodes</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.VisitParents">VisitParents</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.VisitPreviousSiblings">VisitPreviousSiblings</a></li><li data-type='method'><a href="HierNodeLib.HierNode.html#.VisitSiblings">VisitSiblings</a></li></ul></li><li><a href="HierNodeLib.TextNode.html">TextNode</a></li></ul>
 </nav>
 
 <div id="main">
@@ -46,9 +46,11 @@
 
 
     <section class="readme">
-        <article><pre class="prettyprint source"><code>        ___  __        __   __   ___       __  
-|__| | |__  |__) |\ | /  \ |  \ |__     | /__` 
-|  | | |___ |  \ | \| \__/ |__/ |___ \__/ .__/ 
+        <article><pre class="prettyprint source"><code> _ _  _            _ _         _        _  ___ 
+| | |&lt;_> ___  _ _ | \ | ___  _| | ___  | |/ __>
+|   || |/ ._>| '_>|   |/ . \/ . |/ ._>_| |\__ \
+|_|_||_|\___.|_|  |_\_|\___/\___|\___.\__/&lt;___/
+
 
 D3 = C2.Prev        A1
 C3 = C2.Next         +- B1
@@ -105,7 +107,18 @@ node.AddChild( new MyPerson( &quot;Eve&quot;, 29, &quot;HR&quot; ) );
 var nodes = node.SearchDescendents( &quot;Dept&quot;, &quot;IT&quot; );
 // nodes is an array containing the &quot;Alice&quot; and &quot;Bob&quot; objects.</code></pre><hr>
 <h2>History</h2><p><a href="https://github.com/agbowlin/hiernodejs/tree/master">current</a> : [now]</p>
-<p><a href="https://github.com/agbowlin/hiernodejs/tree/v0.1.11">v0.1.11</a> : [???]</p>
+<p><a href="https://github.com/agbowlin/hiernodejs/tree/v0.1.12">v0.1.12</a> : [presently]</p>
+<ul>
+<li>Added functions:<ul>
+<li>TextPath(ThisNode, TextProperty, IncludeRoot = false, Delimiter = '/')</li>
+<li>FindPath(RootNode, TextPath, TextProperty, IncludeRoot = false, Delimiter = '/')</li>
+<li>NodesToArray(ThisNode, IncludeRoot = false)</li>
+<li>NodesFromArray(NodeArray, IncludeRoot = false)</li>
+</ul>
+</li>
+<li>Breaking changes everywhere.</li>
+</ul>
+<p><a href="https://github.com/agbowlin/hiernodejs/tree/v0.1.11">v0.1.11</a> : [2016-07-30]</p>
 <ul>
 <li>Tightened up the HierNodeLib API.</li>
 <li>Added documentation (jsdoc).</li>
@@ -135,47 +148,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.</code></pre><hr>
 <h2>TODO</h2><ul>
-<li><p>[COMPLETED] function PropertySearchVisitor(PropertyName, PropertyValue)</p>
-<ul>
-<li>A visitor object that collects nodes where the PropertyValue is found within
-  the property PropertyName.</li>
-</ul>
-</li>
-<li><p>function BuildPath( KeyProperty, Delimiter = '/' )</p>
-<ul>
-<li>Builds a delimited path to this node from the root. The resulting path will
-  be constructed using the KeyProperty property and will contain a leading
-  delimiter.</li>
-</ul>
-</li>
-<li><p>function ParsePath( KeyProperty, Path, Delimiter = '' )</p>
-<ul>
-<li>Returns the node designated by the given Path. If the Delimiter is blank,
-  the Delimiter will be auto-detected from the first character of the Path.</li>
-</ul>
-</li>
-<li><p>function DescendentsToArray()</p>
-<ul>
-<li>Flattens the hierarchy of descendents to an array.</li>
-</ul>
-</li>
-<li><p>function DescendentsFromArray( Array )</p>
-<ul>
-<li>Rebuilds the hierarchy of descendents from an array.</li>
-</ul>
-</li>
-<li><p>Revert to VisitRelatives( ThisNode, RelativeType, Visitor )</p>
-<ul>
-<li>Use wrappers for VisitParents, etc.</li>
-</ul>
-</li>
-<li><p>Other</p>
-<ul>
 <li>More formal build tool (gulp or grunt?)</li>
 <li>More formal testing tool (qunit?)</li>
-<li>Support JSDoc</li>
-</ul>
-</li>
 </ul></article>
     </section>
 
@@ -189,7 +163,7 @@ THE SOFTWARE.</code></pre><hr>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jul 30 2016 07:12:35 GMT+0000 (UTC) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Jul 31 2016 08:28:17 GMT+0000 (UTC) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

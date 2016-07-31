@@ -4,10 +4,10 @@
 
 ## Publish a New Release
 
-- Make a new release in GitHu via
-	[https://github.com/agbowlin/hiernodejs/releases.](https://github.com/agbowlin/hiernodejs/releases).
-	This updates the bower registry.
-- Publish to Npm with `npm publish`.
+- Run the build script: `bash build/build.sh`.
+- Make a new release in GitHub. This updates the bower registry.
+	- [https://github.com/agbowlin/hiernodejs/releases](https://github.com/agbowlin/hiernodejs/releases).
+- Publish to Npm: `npm publish`.
 - Update `hiernode.js`, `bower.json`, and `package.json` with the next version number.
 	All subsequent code changes will be done under the new version number.
 	During next publish, this version number will be used in the new release.
@@ -51,5 +51,5 @@ Produces `hiernode.min.js`. May also report warnings and errors.
 
 # Notes
 
-- Ascii Art: http://patorjk.com/software/taag/#p=display&c=c%2B%2B&f=JS%20Stick%20Letters
+- [Ascii Art](http://patorjk.com/software/taag/#p=display&c=c%2B%2B&f=Dr%20Pepper)
 

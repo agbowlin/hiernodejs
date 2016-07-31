@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>HierNode Test</title>
-		
+
 		<style type="text/css">
 			body {
 				font-family: Arial, Helvetica, sans-serif;
@@ -50,20 +50,64 @@
 		<ul id="TestSuite00"></ul>
 		<hr>
 
-		<h1>Test 01</h1>
-		<pre id="Test01"></pre>
-		<ul id="TestSuite01"></ul>
-		<hr>
-
-		<h1>Test 02</h1>
-		<pre id="Test02"></pre>
-		<ul id="TestSuite02"></ul>
-		<hr>
-
-		<h1>Test 03</h1>
-		<pre id="Test03"></pre>
-		<ul id="TestSuite03"></ul>
-		<hr>
+		<table>
+			<tr>
+				<td valign="top">
+					<h1>Test 01</h1>
+					<pre id="Test01"></pre>
+				</td>
+				<td valign="top">
+					<h1>Test Suite 01</h1>
+					<ul id="TestSuite01"></ul>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">
+					<h1>Test 02</h1>
+					<pre id="Test02"></pre>
+				</td>
+				<td valign="top">
+					<h1>Test Suite 02</h1>
+					<ul id="TestSuite02"></ul>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">
+					<h1>Test 03 - A</h1>
+					<pre id="Test03a"></pre>
+				</td>
+				<td valign="top">
+					<h1>Test 03 - B</h1>
+					<pre id="Test03b"></pre>
+				</td>
+				<td valign="top">
+					<h1>Test 03 - C</h1>
+					<pre id="Test03c"></pre>
+				</td>
+				<td valign="top">
+					<h1>Test Suite 03</h1>
+					<ul id="TestSuite03"></ul>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">
+					<h1>Test 04 - A</h1>
+					<pre id="Test04a"></pre>
+				</td>
+				<td valign="top">
+					<h1>Test 04 - B</h1>
+					<pre id="Test04b"></pre>
+				</td>
+				<td valign="top">
+					<h1>Test 04 - C</h1>
+					<pre id="Test04c"></pre>
+				</td>
+				<td valign="top">
+					<h1>Test Suite 04</h1>
+					<ul id="TestSuite04"></ul>
+				</td>
+			</tr>
+		</table>
 
 		<script>
 			/* global HierNodeLib */
@@ -79,7 +123,7 @@
 			}
 
 			var node = null;
-			var child = null;
+			var other_node = null;
 			var test_suite = null;
 
 			//=====================================================================
@@ -87,7 +131,7 @@
 			//		Test Suite 00
 			//
 			//=====================================================================
-			
+
 			test_suite = document.getElementById('TestSuite00');
 
 			node = HierNode();
@@ -108,13 +152,12 @@
 			Test(test_suite, node, "Create a TextNode with a value.");
 			Test(test_suite, node.Text === "Test", "TextNode has correct test value.");
 
-
 			//=====================================================================
 			//
 			//		Test Suite 01
 			//
 			//=====================================================================
-			
+
 			function TestNodes1()
 			{
 				var root = HierNode(
@@ -177,10 +220,12 @@
 				return root;
 			}
 
+			var node_path = '';
+			var text_graph = '';
 
 			node = TestNodes1();
-			document.getElementById("Test01").textContent = node.TextGraph("Text", "|- ", "\n");
-			
+			document.getElementById("Test01").textContent = node.TextGraph("Text", true, "|- ", "\n");
+
 			test_suite = document.getElementById('TestSuite01');
 			Test(test_suite, node.ChildCount() === 3, "A1 has 3 children.");
 			Test(test_suite, node.DescendentCount() === 13, "A1 has 13 descendents.");
@@ -199,13 +244,23 @@
 			Test(test_suite, node.FindFirstDescendent().Text === "B1", "B1 = A1.FirstDesc");
 			Test(test_suite, node.FindLastDescendent().Text === "C7", "C7 = A1.LastDesc");
 
+			other_node = node.FindLastDescendent();
+			node_path = other_node.TextPath("Text", true, "/");
+			Test(test_suite, node_path === "/A1/B3/C7", "'/A1/B3/C7' = C7.TextPath");
+
+			node_path = other_node.TextPath("Text", false, "/");
+			Test(test_suite, node_path === "/B3/C7", "'/B3/C7' = C7.TextPath (no root)");
+
+			other_node = node.FindPath("/B1/C2", "Text", false, "/");
+			Test(test_suite, other_node.Text === "C2", "C2 = A1.FindPath('/B1/C2')");
+
 
 			//=====================================================================
 			//
 			//		Test Suite 02
 			//
 			//=====================================================================
-			
+
 			function TestNodes2()
 			{
 				var root = TextNode("A1");
@@ -228,7 +283,7 @@
 
 
 			node = TestNodes2();
-			document.getElementById("Test02").textContent = node.TextGraph("Text", "|- ", "\n");
+			document.getElementById("Test02").textContent = node.TextGraph("Text", true, "|- ", "\n");
 
 			test_suite = document.getElementById('TestSuite02');
 			Test(test_suite, node.ChildCount() === 3, "A1 has 3 children.");
@@ -248,13 +303,20 @@
 			Test(test_suite, node.FindFirstDescendent().Text === "B1", "B1 = A1.FirstDesc");
 			Test(test_suite, node.FindLastDescendent().Text === "C7", "C7 = A1.LastDesc");
 
+			other_node = node.FindLastDescendent();
+			node_path = other_node.TextPath("Text", "/");
+			Test(test_suite, node_path === "/A1/B3/C7", "'/A1/B3/C7' = C7.TextPath");
+
+			other_node = node.FindPath("/B1/C2", "Text", "/");
+			Test(test_suite, other_node.Text === "C2", "C2 = A1.FindPath('/B1/C2')");
+
 
 			//=====================================================================
 			//
 			//		Test Suite 03
 			//
 			//=====================================================================
-			
+
 			function TestNodes3()
 			{
 				var root = TextNode("Root");
@@ -274,22 +336,78 @@
 			}
 
 			node = TestNodes3();
-			document.getElementById("Test03").textContent = node.TextGraph("Text", "|- ", "\n");
+
+			text_graph = node.TextGraph("Text", false, "|- ", "\n");
+			document.getElementById("Test03a").textContent = text_graph;
 
 			test_suite = document.getElementById('TestSuite03');
-			Test(test_suite, node.ChildCount() === 3, "Root has 3 children.");
-			Test(test_suite, node.DescendentCount() === 39, "Root has 39 descendents.");
-			
+			Test(test_suite, node.ChildCount() === 3, "A: Root has 3 children.");
+			Test(test_suite, node.DescendentCount() === 39, "A: Root has 39 descendents.");
+
+			// Remove some children.
+
 			node = node.SearchFirstDescendent("Text", "2.3");
-			Test(test_suite, node.Text == "2.3", "Found descendent node 2.3.");
-			
+			Test(test_suite, node.Text == "2.3", "A: Found descendent node 2.3.");
+
 			node.RemoveChildren();
-			Test(test_suite, node.ChildCount() == 0, "Removed children from 2.3.");
+			Test(test_suite, node.ChildCount() == 0, "B: Removed all children from 2.3.");
 
 			node = node.FindRoot();
-			Test(test_suite, node.Text == "Root", "Found descendent Root node.");
-			Test(test_suite, node.DescendentCount() === 36, "Root has 36 descendents.");
-			
+			Test(test_suite, node.Text == "Root", "B: Found root from 2.3.");
+
+			text_graph = node.TextGraph("Text", false, "|- ", "\n");
+			document.getElementById("Test03b").textContent = text_graph;
+
+			Test(test_suite, node.DescendentCount() === 36, "B: Root now has 36 descendents.");
+
+			// Remove some more children.
+
+			node = node.SearchFirstDescendent("Text", "3");
+			Test(test_suite, node.Text == "3", "B: Found descendent node 3.");
+
+			node.RemoveChildren();
+			Test(test_suite, node.ChildCount() == 0, "C: Removed all children from 3.");
+
+			node = node.FindRoot();
+			Test(test_suite, node.Text == "Root", "C: Found root from 3.");
+
+			text_graph = node.TextGraph("Text", false, "|- ", "\n");
+			document.getElementById("Test03c").textContent = text_graph;
+
+			Test(test_suite, node.DescendentCount() === 24, "C: Root now has 24 descendents.");
+
+
+			//=====================================================================
+			//
+			//		Test Suite 04
+			//
+			//=====================================================================
+
+			test_suite = document.getElementById('TestSuite04');
+
+			node = TestNodes3();
+
+			text_graph = node.TextGraph("Text", true, "|- ", "\n");
+			document.getElementById("Test04a").textContent = text_graph;
+			Test(test_suite, node.DescendentCount() === 39, "A: Root has 39 descendents.");
+
+			var visitor = new HierNodeLib.CollectingVisitor(true);
+			node.VisitDescendents(visitor, true);
+			Test(test_suite, visitor.Nodes, "A: Cloned all descendents and stored them in an array.");
+
+			node.RemoveChildren();
+			text_graph = node.TextGraph("Text", true, "|- ", "\n");
+			document.getElementById("Test04b").textContent = text_graph;
+			Test(test_suite, node.DescendentCount() === 0, "B: Root removed all descendents. Root now has 0 descendents.");
+
+			var json = JSON.stringify(visitor.Nodes);
+			var nodes = JSON.parse(json);
+			Test(test_suite, json && nodes, "B: Converted descendents array to json and back.");
+
+			node.AddChildren(nodes);
+			text_graph = node.TextGraph("Text", true, "|- ", "\n");
+			document.getElementById("Test04c").textContent = text_graph;
+			Test(test_suite, node.DescendentCount() === 39, "C: Re-added the descendents array to Root. Root now has 39 descendents.");
 		</script>
 
 	</body>
