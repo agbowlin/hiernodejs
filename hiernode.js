@@ -23,7 +23,7 @@ var HierNodeLib = {};
  */
 HierNodeLib.Version = function()
 {
-	return "v0.1.13"
+	return "v0.1.13";
 };
 
 
