@@ -4,30 +4,37 @@ echo --- START OF BUILD ---
 cd ~/workspace
 
 echo ==========================================
-
+echo
 echo === Documenting [hiernode.js]
+echo === Clearing output [docs/]
+rm -fdr docs
+echo ...
 
 	jsdoc hiernode.js --configure build/jsdoc.json
 
-echo === Wrote to [docs/]
-echo === Documentation completed.
-
+echo ...
+echo === Documentation succeeded. Wrote to [docs/]
+echo
 echo ==========================================
-
+echo
 echo === Compiling [hiernode.js]
 ls -l hiernode.js
+echo === Clearing output [hiernode.min.js]
+rm -f hiernode.min.js
 echo ...
 
 	java -jar node_modules/google-closure-compiler/compiler.jar \
-		--compilation_level SIMPLE			\
-		--warning_level VERBOSE				\
-		--js hiernode.js					\
-		--js_output_file hiernode.min.js	\
+			--js hiernode.js					\
+			--js_output_file hiernode.min.js	\
+			--externs "build/closure-compiler-externs.js"		\
+			--compilation_level SIMPLE			\
+			# --warning_level VERBOSE				\
+			# --process_common_js_modules			\
 
 echo ...
 ls -l hiernode.min.js
-echo === Compilation completed
-
+echo === Compilation succeeded. Wrote to [hiernode.min.js]
+echo
 echo ==========================================
 
 echo --- END OF BUILD ---

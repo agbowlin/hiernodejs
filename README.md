@@ -96,6 +96,11 @@ or
 
 [current](https://github.com/agbowlin/hiernodejs/tree/master) : [now]
 
+[v0.1.13](https://github.com/agbowlin/hiernodejs/tree/v0.1.13) : [presently]
+- Fixed exports for browser and nodejs.
+- Added NodeJS tests.
+- 
+
 [v0.1.12](https://github.com/agbowlin/hiernodejs/tree/v0.1.12) : [2016-07-31]
 - Added functions:
 	- TextPath(ThisNode, TextProperty, IncludeRoot = true, Delimiter = '/')
