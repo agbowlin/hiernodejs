@@ -96,6 +96,9 @@ or
 
 [current](https://github.com/agbowlin/hiernodejs/tree/master) : [now]
 
+[v0.1.14](https://github.com/agbowlin/hiernodejs/tree/v0.1.14) : [presently]
+
+
 [v0.1.13](https://github.com/agbowlin/hiernodejs/tree/v0.1.13) : [2016-07-31]
 - Fixed exports for browser and nodejs.
 - Added NodeJS tests.
