@@ -45,8 +45,9 @@ Make sure the version is updated in package.json
 ## Build
 
 Produces `hiernode.min.js`. May also report warnings and errors.
+To build, run the folowing command in the project's top directory (where hiernode.js is located).
 
-	bash build.sh
+	bash build/build.sh
 
 
 # Notes

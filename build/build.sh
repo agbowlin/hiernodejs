@@ -1,7 +1,7 @@
 #!/bin/bash
 echo --- START OF BUILD ---
 
-cd ~/workspace
+# cd ~/workspace
 
 echo ==========================================
 echo
@@ -10,7 +10,7 @@ echo === Clearing output [docs/]
 rm -fdr docs
 echo ...
 
-	jsdoc hiernode.js --configure build/jsdoc.json
+	node_modules/.bin/jsdoc hiernode.js --configure build/jsdoc.json
 
 echo ...
 echo === Documentation succeeded. Wrote to [docs/]
