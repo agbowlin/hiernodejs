@@ -1,55 +1,55 @@
 {
-  "name": "hiernodejs",
-  "version": "0.1.14",
-  "homepage": "https://github.com/agbowlin/hiernodejs",
-  "description": "A hierarchical node (tree like) data structure library for JavaScript.",
-  "authors": [
-    {
-      "name": "Andre G. Bowlin",
-      "email": "agbowlin@gmail.com",
-      "homepage": "http://liquicode.com"
+    "name": "hiernodejs",
+    "version": "0.1.15",
+    "homepage": "https://github.com/agbowlin/hiernodejs",
+    "description": "A hierarchical node (tree like) data structure library for JavaScript.",
+    "authors": [
+        {
+            "name": "Andre G. Bowlin",
+            "email": "agbowlin@gmail.com",
+            "homepage": "http://liquicode.com"
+        }
+    ],
+    "main": "hiernode.js",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/agbowlin/hiernodejs.git"
+    },
+    "license": "MIT",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser",
+        "hiernode",
+        "hiernode.js",
+        "hierarchy",
+        "hierarchical",
+        "node",
+        "tree",
+        "data"
+    ],
+    "files": [
+        "package.json",
+        "bower.json",
+        "LICENSE",
+        "README.md",
+        "hiernode.js",
+        "hiernode.min.js"
+    ],
+    "ignore": [
+        ".*",
+        "bower_components",
+        "node_modules",
+        "build",
+        "out",
+        "test"
+    ],
+    "devDependencies": {
+        "bower": "^1.7.9",
+        "jsdoc": "^3.4.0",
+        "docdash": "^0.4.0",
+        "google-closure-compiler": "^20160713.1.0"
     }
-  ],
-  "main": "hiernode.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/agbowlin/hiernodejs.git"
-  },
-  "license": "MIT",
-  "keywords": [
-    "util",
-    "functional",
-    "server",
-    "client",
-    "browser",
-    "hiernode",
-    "hiernode.js",
-    "hierarchy",
-    "hierarchical",
-    "node",
-    "tree",
-    "data"
-  ],
-  "files": [
-    "package.json",
-    "bower.json",
-    "LICENSE",
-    "README.md",
-    "hiernode.js",
-    "hiernode.min.js"
-  ],
-  "ignore": [
-    ".*",
-    "bower_components",
-    "node_modules",
-    "build",
-    "out",
-    "test"
-  ],
-  "devDependencies": {
-    "bower": "^1.7.9",
-    "jsdoc": "^3.4.0",
-    "docdash": "^0.4.0",
-    "google-closure-compiler": "^20160713.1.0"
-  }
 }
